@@ -1,4 +1,9 @@
 package net.edwardcooper.shuntingyard.model;
 
-public class Operator {
+abstract public class Operator {
+    protected String name;
+
+    public String getName() {
+        return name;
+    }
 }
