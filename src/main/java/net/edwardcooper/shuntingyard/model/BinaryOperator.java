@@ -3,9 +3,9 @@ package net.edwardcooper.shuntingyard.model;
 import java.util.function.BiFunction;
 
 public class BinaryOperator extends Operator {
-    private BiFunction<Double, Double, Double> action;
-    private boolean leftAssociative;
-    private int precedence;
+    private final BiFunction<Double, Double, Double> action;
+    private final boolean leftAssociative;
+    private final int precedence;
 
     public BinaryOperator(String name, int precedence, boolean leftAssociative, BiFunction<Double, Double, Double> action) {
         super(name);

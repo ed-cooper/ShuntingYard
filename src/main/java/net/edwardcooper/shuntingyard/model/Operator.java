@@ -1,7 +1,7 @@
 package net.edwardcooper.shuntingyard.model;
 
 abstract public class Operator {
-    private String name;
+    private final String name;
 
     protected Operator(String name) {
         this.name = name;
