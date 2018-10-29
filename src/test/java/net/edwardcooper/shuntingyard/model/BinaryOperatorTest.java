@@ -29,12 +29,12 @@ public class BinaryOperatorTest {
 
     @Test
     public void testGetLeftAssociative_Low() {
-        boolean expected = true;
+        boolean expected = false;
         BinaryOperator operator = new BinaryOperator("+", 1, expected, (x, y) -> x + y);
 
         boolean actual = operator.getLeftAssociative();
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(true, actual);
     }
 
     @Test
