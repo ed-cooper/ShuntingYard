@@ -29,7 +29,7 @@ public class BinaryOperatorTest {
 
     @Test
     public void testGetLeftAssociative_Low() {
-        boolean expected = false;
+        boolean expected = true;
         BinaryOperator operator = new BinaryOperator("+", 1, expected, (x, y) -> x + y);
 
         boolean actual = operator.getLeftAssociative();
