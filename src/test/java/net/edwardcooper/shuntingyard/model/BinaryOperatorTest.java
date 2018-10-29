@@ -34,7 +34,7 @@ public class BinaryOperatorTest {
 
         boolean actual = operator.getLeftAssociative();
 
-        Assert.assertEquals(true, actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
