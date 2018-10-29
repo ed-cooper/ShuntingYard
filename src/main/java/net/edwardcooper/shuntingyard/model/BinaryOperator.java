@@ -3,12 +3,13 @@ package net.edwardcooper.shuntingyard.model;
 import java.util.function.BiFunction;
 
 public class BinaryOperator extends Operator {
-    protected BiFunction<Double, Double, Double> action;
-    protected boolean leftAssociative;
-    protected int precedence;
+    private BiFunction<Double, Double, Double> action;
+    private boolean leftAssociative;
+    private int precedence;
 
     public BinaryOperator(String name, int precedence, boolean leftAssociative, BiFunction<Double, Double, Double> action) {
-        this.name = name;
+        super(name);
+
         this.precedence = precedence;
         this.leftAssociative = leftAssociative;
         this.action = action;
