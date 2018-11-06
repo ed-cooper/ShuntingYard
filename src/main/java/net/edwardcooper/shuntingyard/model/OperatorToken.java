@@ -14,8 +14,8 @@ public abstract class OperatorToken extends Token {
     }
 
     /**
-     * Gets the operation that this operator corresponds to.
-     * @return              The operation that this operator corresponds to.W
+     * Gets the operation that this token corresponds to.
+     * @return              The operation that this token corresponds to.
      */
     public abstract Operator getOperation();
 }
