@@ -52,7 +52,14 @@ public class DefaultLexer extends LexerBase {
 
     @Override
     public Type[] getSupportedOutputTokenTypes() {
-        return new Type[] {};
+        return new Type[] {
+                BinaryOperatorToken.class,
+                UnaryOperatorToken.class,
+                MultiOutputUnaryOperatorToken.class,
+                ConstantToken.class,
+                VariableToken.class,
+                BracketToken.class
+        };
     }
 
     /**
