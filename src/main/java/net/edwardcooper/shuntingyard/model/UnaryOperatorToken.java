@@ -11,7 +11,7 @@ public class UnaryOperatorToken extends OperatorToken {
      * @param literal       The string literal that this token represents.
      * @param operation     The operation that this token corresponds to.
      */
-    protected UnaryOperatorToken(String literal, UnaryOperator operation) {
+    public UnaryOperatorToken(String literal, UnaryOperator operation) {
         super(literal);
 
         this.operation = operation;

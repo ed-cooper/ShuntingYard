@@ -11,7 +11,7 @@ public class BinaryOperatorToken extends OperatorToken {
      * @param literal       The string literal that this token represents.
      * @param operation     The operation that this token corresponds to.
      */
-    protected BinaryOperatorToken(String literal, BinaryOperator operation) {
+    public BinaryOperatorToken(String literal, BinaryOperator operation) {
         super(literal);
 
         this.operation = operation;
