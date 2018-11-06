@@ -54,4 +54,20 @@ public class DefaultLexer extends LexerBase {
     public Type[] getSupportedOutputTokenTypes() {
         return new Type[] {};
     }
+
+    /**
+     * Gets the list of operators supported by this lexer.
+     * @return              The list of operators supported by this lexer.
+     */
+    public List<Operator> getOperators() {
+        return operators;
+    }
+
+    /**
+     * Gets the list of variable names to search for.
+     * @return              The list of variable names to search for.
+     */
+    public List<String> getVariables() {
+        return variables;
+    }
 }
