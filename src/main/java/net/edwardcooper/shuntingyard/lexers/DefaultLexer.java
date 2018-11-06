@@ -9,7 +9,7 @@ import net.edwardcooper.shuntingyard.model.TokenNotRecognisedException;
 public class DefaultLexer extends LexerBase {
 
     @Override
-    public Token ReadToken(String input, int start) throws TokenNotRecognisedException {
+    public Token readToken(String input, int start) throws TokenNotRecognisedException {
         throw new TokenNotRecognisedException(input, start);
     }
 

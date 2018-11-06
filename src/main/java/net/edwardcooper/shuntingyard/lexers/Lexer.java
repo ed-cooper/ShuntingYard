@@ -15,7 +15,7 @@ public interface Lexer {
      * @param input         The input string to split.
      * @return              A list of <code>Token</code> objects representing the input string.
      */
-    List<Token> ReadTokens(String input);
+    List<Token> readTokens(String input);
 
     /**
      * Reads a single token at the specified location within an input string.
@@ -24,5 +24,5 @@ public interface Lexer {
      * @return                              The token at the specified location within the input string.
      * @throws TokenNotRecognisedException  Thrown when a token could not be recognised.
      */
-    Token ReadToken(String input, int start) throws TokenNotRecognisedException;
+    Token readToken(String input, int start) throws TokenNotRecognisedException;
 }
