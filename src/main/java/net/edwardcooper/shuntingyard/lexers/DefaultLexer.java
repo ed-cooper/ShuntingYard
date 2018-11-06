@@ -43,6 +43,8 @@ public class DefaultLexer extends LexerBase {
         new MultiOutputUnaryOperator("∓", (x) -> Arrays.asList(-x, x))
     );
 
+    private List<String> variables = Arrays.asList();
+
     @Override
     public Token readToken(String input, int start) throws TokenNotRecognisedException {
         throw new TokenNotRecognisedException(input, start);
