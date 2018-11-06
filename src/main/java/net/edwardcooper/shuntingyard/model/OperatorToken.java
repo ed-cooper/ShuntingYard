@@ -1,7 +1,7 @@
 package net.edwardcooper.shuntingyard.model;
 
 /**
- * Represents an operator in a mathematical expression.
+ * Represents the token for an operator in a mathematical expression.
  */
 public abstract class OperatorToken extends Token {
 

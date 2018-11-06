@@ -1,5 +1,8 @@
 package net.edwardcooper.shuntingyard.model;
 
+/**
+ * Represents the token for a unary operator in a mathematical expression.
+ */
 public class UnaryOperatorToken extends OperatorToken {
     private UnaryOperator operation;
 

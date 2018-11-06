@@ -1,5 +1,8 @@
 package net.edwardcooper.shuntingyard.model;
 
+/**
+ * Represents the token for a binary operator in a mathematical expression.
+ */
 public class BinaryOperatorToken extends OperatorToken {
     private BinaryOperator operation;
 
