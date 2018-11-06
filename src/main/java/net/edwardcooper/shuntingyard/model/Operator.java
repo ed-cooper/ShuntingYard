@@ -1,6 +1,6 @@
 package net.edwardcooper.shuntingyard.model;
 
-abstract public class Operator {
+public abstract class Operator {
     private final String name;
 
     protected Operator(String name) {
