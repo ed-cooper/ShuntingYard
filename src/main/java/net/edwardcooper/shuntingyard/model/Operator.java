@@ -4,21 +4,21 @@ package net.edwardcooper.shuntingyard.model;
  * Represents an operator in a mathematical expression.
  */
 public abstract class Operator {
-    private final String name;
+    private final String symbol;
 
     /**
      * Operator class constructor.
-     * @param name      The name of the operator being defined.
+     * @param symbol        The symbol of the operator being defined.
      */
-    protected Operator(String name) {
-        this.name = name;
+    protected Operator(String symbol) {
+        this.symbol = symbol;
     }
 
     /**
-     * Gets the name of the operator defined by this instance.
-     * @return          The name of the operator defined by this instance.
+     * Gets the symbol of the operator defined by this instance.
+     * @return              The symbol of the operator defined by this instance.
      */
-    public String getName() {
-        return name;
+    public String getSymbol() {
+        return symbol;
     }
 }

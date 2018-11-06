@@ -12,14 +12,14 @@ public class BinaryOperator extends Operator {
 
     /**
      * BinaryOperator class constructor.
-     * @param name              The name of the operator being defined.
+     * @param symbol            The symbol of the operator being defined.
      * @param precedence        The precedence of the operator, where a higher value causes the operator to be evaluated
      *                          before operators with a lower precedence.
      * @param leftAssociative   Whether the operator is left or right associative.
      * @param action            The function of the operator, which maps 2 input values to an output value.
      */
-    public BinaryOperator(String name, int precedence, boolean leftAssociative, DoubleBinaryOperator action) {
-        super(name);
+    public BinaryOperator(String symbol, int precedence, boolean leftAssociative, DoubleBinaryOperator action) {
+        super(symbol);
 
         this.precedence = precedence;
         this.leftAssociative = leftAssociative;

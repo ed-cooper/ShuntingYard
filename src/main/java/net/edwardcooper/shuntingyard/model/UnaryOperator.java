@@ -10,19 +10,19 @@ public class UnaryOperator extends Operator {
 
     /**
      * UnaryOperator class constructor.
-     * @param name      The name of the operator being defined.
-     * @param action    The function of the operator which maps an input value to an output value.
+     * @param symbol        The symbol of the operator being defined.
+     * @param action        The function of the operator which maps an input value to an output value.
      */
-    public UnaryOperator(String name, DoubleUnaryOperator action) {
-        super(name);
+    public UnaryOperator(String symbol, DoubleUnaryOperator action) {
+        super(symbol);
 
         this.action = action;
     }
 
     /**
      * Gets the function of the operator defined by this instance, which maps an input value to an output value.
-     * @return          The function of the operator defined by this instance, which maps an input value to an output
-     *                  value.
+     * @return              The function of the operator defined by this instance, which maps an input value to an
+     *                      output value.
      */
     public DoubleUnaryOperator getAction() {
         return action;
