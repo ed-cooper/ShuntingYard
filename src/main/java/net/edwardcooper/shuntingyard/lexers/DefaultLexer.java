@@ -64,8 +64,9 @@ public class DefaultLexer extends LexerBase {
     public String preprocess(String input) {
         // Pre-processing steps:
         // 1: Remove all whitespace
-        // 2: Replace all unary negation operators with "−" characters to avoid conflict with the "-" binary operator
-        return findNegate.matcher(input.replace(" ", "")).replaceAll("−");
+        // 2: Make lowercase
+        // 3: Replace all unary negation operators with "−" characters to avoid conflict with the "-" binary operator
+        return findNegate.matcher(input.replace(" ", "").toLowerCase()).replaceAll("−");
     }
 
     @Override
