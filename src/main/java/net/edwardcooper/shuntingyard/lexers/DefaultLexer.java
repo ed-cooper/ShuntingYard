@@ -95,6 +95,17 @@ public class DefaultLexer extends LexerBase {
                 return new ConstantToken(constant, constants.get(constant));
             }
         }
+        // Detect brackets
+        switch (input.charAt(start)) {
+            case '(':
+                return new BracketToken("(", true);
+            case ')':
+                return new BracketToken(")", false);
+            case '[':
+                return new BracketToken("[", true);
+            case ']':
+                return new BracketToken("]", false);
+        }
         // No match found
         throw new TokenNotRecognisedException(input, start);
     }
