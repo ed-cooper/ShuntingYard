@@ -27,4 +27,9 @@ public class UnaryOperator extends Operator {
     public DoubleUnaryOperator getAction() {
         return action;
     }
+
+    @Override
+    public OperatorToken getToken() {
+        return new UnaryOperatorToken(getSymbol(), this);
+    }
 }

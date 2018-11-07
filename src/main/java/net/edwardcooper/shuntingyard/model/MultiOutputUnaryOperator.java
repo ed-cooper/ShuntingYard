@@ -28,4 +28,9 @@ public class MultiOutputUnaryOperator extends Operator {
     public Function<Double, List<Double>> getAction() {
         return action;
     }
+
+    @Override
+    public OperatorToken getToken() {
+        return new MultiOutputUnaryOperatorToken(getSymbol(), this);
+    }
 }

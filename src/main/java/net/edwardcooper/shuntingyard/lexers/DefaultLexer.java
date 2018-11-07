@@ -12,8 +12,7 @@ import java.util.regex.Pattern;
 /**
  * The default lexer for tokenising maths expressions.
  *
- * The supported output token types of this class are: <code>BinaryOperatorToken</code>,
- * <code>UnaryOperatorToken</code>, <code>MultiOutputUnaryOperatorToken</code>, <code>ConstantToken</code>,
+ * The supported output token types of this class are: <code>OperatorToken</code>, <code>ConstantToken</code>,
  * <code>VariableToken</code>, <code>BracketToken</code>.
  */
 public class DefaultLexer extends LexerBase {
@@ -78,13 +77,7 @@ public class DefaultLexer extends LexerBase {
         // Detect operators
         for (Operator operator: operators) {
             if (input.startsWith(operator.getSymbol(), start)) {
-                if (operator instanceof BinaryOperator) {
-                    return new BinaryOperatorToken(operator.getSymbol(), (BinaryOperator)operator);
-                } else if (operator instanceof UnaryOperator) {
-                    return new UnaryOperatorToken(operator.getSymbol(), (UnaryOperator)operator);
-                } else if (operator instanceof MultiOutputUnaryOperator) {
-                    return new MultiOutputUnaryOperatorToken(operator.getSymbol(), (MultiOutputUnaryOperator)operator);
-                }
+                return operator.getToken();
             }
         }
         // Detect variables

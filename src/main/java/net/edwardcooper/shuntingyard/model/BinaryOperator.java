@@ -51,4 +51,9 @@ public class BinaryOperator extends Operator {
     public int getPrecedence() {
         return precedence;
     }
+
+    @Override
+    public OperatorToken getToken() {
+        return new BinaryOperatorToken(getSymbol(), this);
+    }
 }

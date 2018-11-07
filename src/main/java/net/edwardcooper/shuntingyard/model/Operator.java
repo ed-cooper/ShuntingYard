@@ -21,4 +21,10 @@ public abstract class Operator {
     public String getSymbol() {
         return symbol;
     }
+
+    /**
+     * Gets the token that represents this operator.
+     * @return              The token that represents this operator.
+     */
+    public abstract OperatorToken getToken();
 }
