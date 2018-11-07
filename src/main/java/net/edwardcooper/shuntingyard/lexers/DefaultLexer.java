@@ -1,10 +1,13 @@
 package net.edwardcooper.shuntingyard.lexers;
 
 import net.edwardcooper.shuntingyard.model.*;
+import org.graalvm.compiler.graph.spi.Canonicalizable;
+import org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp;
 
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * The default lexer for tokenising maths expressions.
@@ -42,8 +45,16 @@ public class DefaultLexer extends LexerBase {
         new MultiOutputUnaryOperator("±", (x) -> Arrays.asList(x, -x)),
         new MultiOutputUnaryOperator("∓", (x) -> Arrays.asList(-x, x))
     );
-
     private List<String> variables = Arrays.asList();
+    private Pattern findNegate = Pattern.compile("(?<!(\\d|\\)|e|π|pi))-");
+
+    @Override
+    public String preprocess(String input) {
+        // Pre-processing steps:
+        // 1: Remove all whitespace
+        // 2: Replace all unary negation operators with "−" characters to avoid conflict with the "-" binary operator
+        return findNegate.matcher(input.replace(" ", "")).replaceAll("−");
+    }
 
     @Override
     public Token readToken(String input, int start) throws TokenNotRecognisedException {
