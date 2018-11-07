@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -124,6 +125,22 @@ public class DefaultLexer extends LexerBase {
      */
     public List<Operator> getOperators() {
         return operators;
+    }
+
+    /**
+     * Gets the list of brackets to search for.
+     * @return              The list of brackets to search for.
+     */
+    public List<BracketToken> getBrackets() {
+        return brackets;
+    }
+
+    /**
+     * Gets the collection of constants to search for.
+     * @return              The collection of constants to search for.
+     */
+    public Map<String, Double> getConstants() {
+        return constants;
     }
 
     /**
