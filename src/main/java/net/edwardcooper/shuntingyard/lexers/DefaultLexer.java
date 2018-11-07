@@ -48,6 +48,14 @@ public class DefaultLexer extends LexerBase {
         new MultiOutputUnaryOperator("±", (x) -> Arrays.asList(x, -x)),
         new MultiOutputUnaryOperator("∓", (x) -> Arrays.asList(-x, x))
     );
+    private List<BracketToken> brackets = Arrays.asList(
+        new BracketToken("(", true),
+        new BracketToken(")", false),
+        new BracketToken("[", true),
+        new BracketToken("]", false),
+        new BracketToken("{", true),
+        new BracketToken("}", false)
+    );
     private HashMap<String, Double> constants = new HashMap<String, Double>();
     private List<String> variables = Arrays.asList();
     private Pattern findNegate = Pattern.compile("(?<!(\\d|\\)|e|π|pi))-");
@@ -61,6 +69,7 @@ public class DefaultLexer extends LexerBase {
         constants.put("π", Math.PI);
         constants.put("e", Math.E);
         constants.put("pi", Math.PI);
+
     }
 
     @Override
@@ -93,15 +102,10 @@ public class DefaultLexer extends LexerBase {
             }
         }
         // Detect brackets
-        switch (input.charAt(start)) {
-            case '(':
-                return new BracketToken("(", true);
-            case ')':
-                return new BracketToken(")", false);
-            case '[':
-                return new BracketToken("[", true);
-            case ']':
-                return new BracketToken("]", false);
+        for (BracketToken bracket : brackets) {
+            if (input.startsWith(bracket.getLiteral(), start)) {
+                return bracket;
+            }
         }
         // Detect numbers
         Matcher findNumbersMatcher = findNumbers.matcher(input);
