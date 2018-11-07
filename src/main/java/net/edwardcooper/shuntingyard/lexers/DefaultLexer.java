@@ -83,6 +83,12 @@ public class DefaultLexer extends LexerBase {
                 }
             }
         }
+        // Detect constants
+        for (String constant : constants.keySet()) {
+            if (input.startsWith(constant, start)) {
+                return new ConstantToken(constant, constants.get(constant));
+            }
+        }
         // No match found
         throw new TokenNotRecognisedException(input, start);
     }
