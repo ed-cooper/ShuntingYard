@@ -58,6 +58,19 @@ public class DefaultLexer extends LexerBase {
 
     @Override
     public Token readToken(String input, int start) throws TokenNotRecognisedException {
+        // Detect operators
+        for (Operator operator: operators) {
+            if (input.startsWith(operator.getSymbol(), start)) {
+                if (operator instanceof BinaryOperator) {
+                    return new BinaryOperatorToken(operator.getSymbol(), (BinaryOperator)operator);
+                } else if (operator instanceof UnaryOperator) {
+                    return new UnaryOperatorToken(operator.getSymbol(), (UnaryOperator)operator);
+                } else if (operator instanceof MultiOutputUnaryOperator) {
+                    return new MultiOutputUnaryOperatorToken(operator.getSymbol(), (MultiOutputUnaryOperator)operator);
+                }
+            }
+        }
+        // No match found
         throw new TokenNotRecognisedException(input, start);
     }
 
