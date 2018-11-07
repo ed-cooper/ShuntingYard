@@ -83,6 +83,12 @@ public class DefaultLexer extends LexerBase {
                 }
             }
         }
+        // Detect variables
+        for (String variable : variables) {
+            if (input.startsWith(variable, start)) {
+                return new VariableToken(variable);
+            }
+        }
         // Detect constants
         for (String constant : constants.keySet()) {
             if (input.startsWith(constant, start)) {
