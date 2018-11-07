@@ -1,13 +1,11 @@
 package net.edwardcooper.shuntingyard.lexers;
 
 import net.edwardcooper.shuntingyard.model.*;
-import org.graalvm.compiler.graph.spi.Canonicalizable;
-import org.graalvm.compiler.lir.aarch64.AArch64ArithmeticOp;
 
 import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
@@ -46,7 +44,7 @@ public class DefaultLexer extends LexerBase {
         new MultiOutputUnaryOperator("±", (x) -> Arrays.asList(x, -x)),
         new MultiOutputUnaryOperator("∓", (x) -> Arrays.asList(-x, x))
     );
-    private HashMap<String, Double> constants = new HashMap<String, Double>;
+    private HashMap<String, Double> constants = new HashMap<String, Double>();
     private List<String> variables = Arrays.asList();
     private Pattern findNegate = Pattern.compile("(?<!(\\d|\\)|e|π|pi))-");
 
