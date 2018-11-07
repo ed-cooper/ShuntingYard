@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
 
 /**
  * The default lexer for tokenising maths expressions.
+ *
+ * The supported output token types of this class are: <code>BinaryOperatorToken</code>,
+ * <code>UnaryOperatorToken</code>, <code>MultiOutputUnaryOperatorToken</code>, <code>ConstantToken</code>,
+ * <code>VariableToken</code>, <code>BracketToken</code>.
  */
 public class DefaultLexer extends LexerBase {
     private List<Operator> operators = Arrays.asList(
@@ -115,18 +119,6 @@ public class DefaultLexer extends LexerBase {
         // TODO: Implicit multiplication
         // No match found
         throw new TokenNotRecognisedException(input, start);
-    }
-
-    @Override
-    public Type[] getSupportedOutputTokenTypes() {
-        return new Type[] {
-                BinaryOperatorToken.class,
-                UnaryOperatorToken.class,
-                MultiOutputUnaryOperatorToken.class,
-                ConstantToken.class,
-                VariableToken.class,
-                BracketToken.class
-        };
     }
 
     /**
