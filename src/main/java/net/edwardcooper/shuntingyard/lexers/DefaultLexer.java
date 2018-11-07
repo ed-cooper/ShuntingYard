@@ -6,6 +6,7 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -47,6 +48,7 @@ public class DefaultLexer extends LexerBase {
     private HashMap<String, Double> constants = new HashMap<String, Double>();
     private List<String> variables = Arrays.asList();
     private Pattern findNegate = Pattern.compile("(?<!(\\d|\\)|e|π|pi))-");
+    private Pattern findNumbers = Pattern.compile("^\\d+(\\.\\d+)?");
 
     /**
      * DefaultLexer class constructor
@@ -103,6 +105,12 @@ public class DefaultLexer extends LexerBase {
                 return new BracketToken("[", true);
             case ']':
                 return new BracketToken("]", false);
+        }
+        // Detect numbers
+        Matcher findNumbersMatcher = findNumbers.matcher(input);
+        if (findNumbersMatcher.find(start)) {
+            String match = findNumbersMatcher.group();
+            return new ConstantToken(match, Double.parseDouble(match));
         }
         // No match found
         throw new TokenNotRecognisedException(input, start);
