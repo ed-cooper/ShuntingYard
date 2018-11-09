@@ -27,8 +27,16 @@ public class DefaultParser extends ParserBase {
             if (token instanceof ConstantToken || token instanceof VariableToken) { // Constants & Variables
                 // Treat both constants and variables as values
                 processValue(token, outputRPN, operatorStack);
+
             } else if (token instanceof BinaryOperatorToken) { // Binary ops
-                processBinaryOperator((BinaryOperatorToken)token, outputRPN, operatorStack);
+                processBinaryOperator((BinaryOperatorToken) token, outputRPN, operatorStack);
+
+            } else if (token instanceof UnaryOperatorToken ||  // Unary ops, multi-output unary ops, open brackets
+                    token instanceof MultiOutputUnaryOperatorToken ||
+                    (token instanceof BracketToken && ((BracketToken)token).getIsOpenBracket())) {
+                // Push immediately onto stack and process later
+                operatorStack.push(token);
+                
             } else {
                 // No match found for token type
                 throw new UnsupportedTokenException(equation, token);
