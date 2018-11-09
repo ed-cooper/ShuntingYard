@@ -7,18 +7,18 @@ import java.util.List;
  */
 public class UnsupportedTokenException extends RuntimeException {
     private List<Token> equation;
-    private int index;
+    private Token token;
 
     /**
      * UnsupportedTokenException class constructor.
      * @param equation          The equation containing the unsupported token.
-     * @param index             The index of the unsupported token in the equation,
+     * @param token             The token which was not supported.
      */
-    public UnsupportedTokenException(List<Token> equation, int index) {
-        super("Unsupported token type at index " + index + " in equation");
+    public UnsupportedTokenException(List<Token> equation, Token token) {
+        super("Unsupported token \"" + token.getLiteral() + " of type " + token.getClass().getSimpleName());
 
         this.equation = equation;
-        this.index = index;
+        this.token = token;
     }
 
     /**
@@ -30,10 +30,10 @@ public class UnsupportedTokenException extends RuntimeException {
     }
 
     /**
-     * Gets the index of the unsupported token in the equation.
-     * @return                  The index of the unsupported token in the equation.
+     * Gets the token which was not supported.
+     * @return                  The token which was not supported.
      */
-    public int getIndex() {
-        return index;
+    public Token getToken() {
+        return token;
     }
 }
