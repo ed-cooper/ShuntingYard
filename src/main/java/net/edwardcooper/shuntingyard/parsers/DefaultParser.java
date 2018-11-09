@@ -31,12 +31,21 @@ public class DefaultParser extends ParserBase {
             } else if (token instanceof BinaryOperatorToken) { // Binary ops
                 processBinaryOperator((BinaryOperatorToken) token, outputRPN, operatorStack);
 
-            } else if (token instanceof UnaryOperatorToken ||  // Unary ops, multi-output unary ops, open brackets
-                    token instanceof MultiOutputUnaryOperatorToken ||
-                    (token instanceof BracketToken && ((BracketToken)token).getIsOpenBracket())) {
+            } else if (token instanceof UnaryOperatorToken ||  // Unary ops, multi-output unary ops
+                    token instanceof MultiOutputUnaryOperatorToken) {
                 // Push immediately onto stack and process later
                 operatorStack.push(token);
-                
+
+            } else if (token instanceof BracketToken) { // Brackets
+                BracketToken bracketToken = (BracketToken)token;
+
+                // Treat open and close brackets differently
+                if (bracketToken.getIsOpenBracket()) {
+                    // Push immediately onto stack and process later
+                    operatorStack.push(bracketToken);
+                } else {
+                    processCloseBracket(bracketToken, outputRPN, operatorStack);
+                }
             } else {
                 // No match found for token type
                 throw new UnsupportedTokenException(equation, token);
@@ -101,5 +110,43 @@ public class DefaultParser extends ParserBase {
 
         // Push the current operator onto the stack
         operatorStack.push(currentToken);
+    }
+
+    /**
+     * Processes a token that is a close bracket.
+     * @param currentToken          The token currently being parsed.
+     * @param outputRPN             The RPN output of the parser.
+     * @param operatorStack         The current operator stack.
+     */
+    protected void processCloseBracket(BracketToken currentToken, ArrayList<Token> outputRPN,
+                                         Stack<Token> operatorStack) {
+        // When close bracket is found, add all the operators in the stack to the output RPN until the matching
+        // open bracket is found
+        Token operator = null;
+        while (!operatorStack.empty()) {
+            // Get next operator
+            operator = operatorStack.pop();
+
+            if (operator instanceof BracketToken) {
+                // As close brackets don't get added to the stack, we know this must be an open bracket
+                // As we don't want to keep this open bracket, there is no need to re-add it to the stack
+                break;
+            }
+
+            outputRPN.add(operator);
+        }
+
+        // Check last operator was an open bracket
+        if (!(operator instanceof BracketToken)) {
+            // TODO: create new exception type
+            throw new RuntimeException("No matching open bracket found");
+        }
+
+        // Process all the unary operators at the top of the stack (as these apply to this bracket)
+        while (!operatorStack.empty() &&
+                (operatorStack.peek() instanceof UnaryOperatorToken
+                        || operatorStack.peek() instanceof MultiOutputUnaryOperatorToken)) {
+            outputRPN.add(operatorStack.pop());
+        }
     }
 }
