@@ -2,9 +2,7 @@ package net.edwardcooper.shuntingyard.evaluators;
 
 import net.edwardcooper.shuntingyard.model.Token;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The default evaluator for evaluating maths expressions.
@@ -17,7 +15,26 @@ public class DefaultEvaluator extends EvaluatorBase {
 
     @Override
     public List<Double> evaluate(List<Token> equation) {
-        return null;
+        // If RPN empty, return no result
+        if (equation.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        // Create stack to hold intermediary values
+        Stack<List<Double>> values = new Stack<>();
+
+        // For each RPN token
+        for (Token token : equation) {
+
+        }
+
+        // There should be a single item remaining in values - the final output
+        if (values.size() > 1) {
+            // TODO: create class for exception
+            throw new RuntimeException("Invalid RPN");
+        }
+
+        return values.pop();
     }
 
 
