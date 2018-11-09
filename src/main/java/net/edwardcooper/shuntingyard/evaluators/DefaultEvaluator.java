@@ -2,7 +2,9 @@ package net.edwardcooper.shuntingyard.evaluators;
 
 import net.edwardcooper.shuntingyard.model.Token;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The default evaluator for evaluating maths expressions.
@@ -11,8 +13,19 @@ import java.util.List;
  * <code>VariableToken</code>.
  */
 public class DefaultEvaluator extends EvaluatorBase {
+    private HashMap<String, Integer> variables = new HashMap<>();
+
     @Override
     public List<Double> evaluate(List<Token> equation) {
         return null;
+    }
+
+
+    /**
+     * Gets the map of variable names to values.
+     * @return              The map of variable names to values.
+     */
+    public Map<String, Integer> getVariables() {
+        return variables;
     }
 }
