@@ -1,9 +1,6 @@
 package net.edwardcooper.shuntingyard.evaluators;
 
-import net.edwardcooper.shuntingyard.model.BinaryOperatorToken;
-import net.edwardcooper.shuntingyard.model.ConstantToken;
-import net.edwardcooper.shuntingyard.model.Token;
-import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
+import net.edwardcooper.shuntingyard.model.*;
 
 import java.util.*;
 
@@ -29,7 +26,9 @@ public class DefaultEvaluator extends EvaluatorBase {
         // For each RPN token
         for (Token token : equation) {
             if (token instanceof BinaryOperatorToken) { // Binary ops
-                evaluateBinaryOperator((BinaryOperatorToken)token, values);
+                evaluateBinaryOperator((BinaryOperatorToken) token, values);
+            } else if (token instanceof UnaryOperatorToken) { // Unary ops
+
             } else {
                 throw new UnsupportedTokenException(equation, token);
             }
