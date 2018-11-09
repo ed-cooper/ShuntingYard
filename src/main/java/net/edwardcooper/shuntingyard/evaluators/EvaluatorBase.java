@@ -15,9 +15,9 @@ public abstract class EvaluatorBase implements Evaluator {
         ArrayList<Double[]> output = new ArrayList<>();
 
         // For each item from set 1
-        for (double n : set1) {
+        for (double m : set1) {
             // For each item from set 2
-            for (double m : set2) {
+            for (double n : set2) {
                 // Add pair
                 output.add(new Double[] {m, n});
             }
