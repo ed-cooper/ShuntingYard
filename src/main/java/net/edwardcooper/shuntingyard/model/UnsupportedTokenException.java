@@ -3,7 +3,7 @@ package net.edwardcooper.shuntingyard.model;
 import java.util.List;
 
 /**
- * Thrown to indicate that an unsupported token type was found whilst parsing an equation.
+ * Thrown to indicate that an unsupported token type was found whilst parsing or evaluating an equation.
  */
 public class UnsupportedTokenException extends RuntimeException {
     private List<Token> equation;
