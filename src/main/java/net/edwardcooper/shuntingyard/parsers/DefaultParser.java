@@ -89,9 +89,9 @@ public class DefaultParser extends ParserBase {
             } else{
                 break;
             }
-
-            // Push the current operator onto the stack
-            operatorStack.push(currentToken);
         }
+
+        // Push the current operator onto the stack
+        operatorStack.push(currentToken);
     }
 }
