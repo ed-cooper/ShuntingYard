@@ -52,6 +52,20 @@ public class DefaultParser extends ParserBase {
             }
         }
 
+        // Pop any remaining binary operators
+        while (!operatorStack.empty()) {
+            Token operator = operatorStack.pop();
+
+            if (operator instanceof BinaryOperatorToken) {
+                outputRPN.add(operator);
+            } else {
+                // There should be no other token types in the stack
+
+                // TODO: Create specialised exception class
+                throw new RuntimeException("Unexpected token type");
+            }
+        }
+
         // Return RPN output
         return outputRPN;
     }
