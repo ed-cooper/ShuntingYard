@@ -7,6 +7,7 @@ Contains support for:
 - Functions (e.g. sine)
 - Left-associative operators (e.g. ^)
 - The plus-minus notation (e.g. ±5)
+- Variables (e.g. x)
 - Constants (e.g. π)
 
 ## Usage
