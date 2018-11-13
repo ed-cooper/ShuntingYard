@@ -7,8 +7,8 @@ import java.util.*;
 /**
  * The default evaluator for evaluating maths expressions.
  *
- * The supported input token types of this class are: <code>OperatorToken</code>, <code>ConstantToken</code>,
- * <code>VariableToken</code>.
+ * The supported input token types of this class are: <code>BinaryOperatorToken</code>, <code>UnaryOperatorToken</code>,
+ * <code>MultiOutputOperatorToken</code>, <code>ConstantToken</code>, <code>VariableToken</code>.
  */
 public class DefaultEvaluator extends EvaluatorBase {
     private HashMap<String, Double> variables = new HashMap<>();
