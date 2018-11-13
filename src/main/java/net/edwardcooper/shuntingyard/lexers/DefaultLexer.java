@@ -109,8 +109,8 @@ public class DefaultLexer extends LexerBase {
             }
         }
         // Detect numbers
-        Matcher findNumbersMatcher = findNumbers.matcher(input);
-        if (findNumbersMatcher.find(start)) {
+        Matcher findNumbersMatcher = findNumbers.matcher(input.substring(start));
+        if (findNumbersMatcher.find()) {
             String match = findNumbersMatcher.group();
             return new ConstantToken(match, Double.parseDouble(match));
         }
