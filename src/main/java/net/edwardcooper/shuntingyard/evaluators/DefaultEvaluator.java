@@ -29,6 +29,8 @@ public class DefaultEvaluator extends EvaluatorBase {
                 evaluateBinaryOperator((BinaryOperatorToken) token, values);
             } else if (token instanceof UnaryOperatorToken) { // Unary ops
                 evaluateUnaryOperator((UnaryOperatorToken) token, values);
+            } else if (token instanceof ConstantToken) { // Constant
+                evaluateConstantToken((ConstantToken) token, values);
             } else {
                 throw new UnsupportedTokenException(equation, token);
             }
@@ -84,6 +86,16 @@ public class DefaultEvaluator extends EvaluatorBase {
 
         // Push outputs to stack
         values.push(outputs);
+    }
+
+    /**
+     * Evaluates a constant token.
+     * @param token         The current token being evaluated.
+     * @param values        The current stack of intermediary values.
+     */
+    protected void evaluateConstantToken(ConstantToken token, Stack<List<Double>> values) {
+        // Push immediately to output
+        values.push(Arrays.asList(token.getValue()));
     }
 
     /**
