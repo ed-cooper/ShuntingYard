@@ -3,10 +3,7 @@ package net.edwardcooper.shuntingyard.lexers;
 import net.edwardcooper.shuntingyard.model.*;
 
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +14,7 @@ import java.util.regex.Pattern;
  * <code>VariableToken</code>, <code>BracketToken</code>.
  */
 public class DefaultLexer extends LexerBase {
-    private List<Operator> operators = Arrays.asList(
+    private List<Operator> operators = new ArrayList<>(Arrays.asList(
         new BinaryOperator("+", 2, true,  (x, y) -> x + y),
         new BinaryOperator("-", 2, true,  (x, y) -> x - y),
         new BinaryOperator("*", 3, true,  (x, y) -> x * y),
@@ -48,17 +45,17 @@ public class DefaultLexer extends LexerBase {
         new UnaryOperator("ln",     (x) -> Math.log(x)),
         new MultiOutputUnaryOperator("±", (x) -> Arrays.asList(x, -x)),
         new MultiOutputUnaryOperator("∓", (x) -> Arrays.asList(-x, x))
-    );
-    private List<BracketToken> brackets = Arrays.asList(
+    ));
+    private List<BracketToken> brackets = new ArrayList<>(Arrays.asList(
         new BracketToken("(", true),
         new BracketToken(")", false),
         new BracketToken("[", true),
         new BracketToken("]", false),
         new BracketToken("{", true),
         new BracketToken("}", false)
-    );
+    ));
     private HashMap<String, Double> constants = new HashMap<String, Double>();
-    private List<String> variables = Arrays.asList();
+    private List<String> variables = new ArrayList<>();
     private Pattern findNegate = Pattern.compile("(?<!(\\d|\\)|e|π|pi))-");
     private Pattern findNumbers = Pattern.compile("^\\d+(\\.\\d+)?");
 
