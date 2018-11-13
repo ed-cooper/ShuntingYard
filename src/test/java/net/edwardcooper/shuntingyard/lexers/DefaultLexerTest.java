@@ -15,12 +15,12 @@ public class DefaultLexerTest {
         String equation = "±(2)+√e";
         DefaultLexer lexer = new DefaultLexer();
         List<Token> expected = Arrays.asList(
-                lexer.getOperators().get(28).getToken(), // Plus-minus
-                lexer.getBrackets().get(0), // Left parenthesis
-                new ConstantToken("2", 2), // 2
-                lexer.getBrackets().get(1), // Right parenthesis
-                lexer.getOperators().get(0).getToken(), // +
-                lexer.getOperators().get(9).getToken(), // Square root
+                lexer.getOperators().get(28).getToken(),                     // Plus-minus
+                lexer.getBrackets().get(0),                                  // Left parenthesis
+                new ConstantToken("2", 2),                      // 2
+                lexer.getBrackets().get(1),                                  // Right parenthesis
+                lexer.getOperators().get(0).getToken(),                      // +
+                lexer.getOperators().get(9).getToken(),                      // Square root
                 new ConstantToken("e", lexer.getConstants().get("e")) // e
         );
 
