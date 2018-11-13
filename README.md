@@ -1,5 +1,5 @@
 # ShuntingYard [![Build Status](https://travis-ci.com/ed-cooper/ShuntingYard.svg?token=5sFscgbotf7G8x6qAMAb&branch=master)](https://travis-ci.com/ed-cooper/ShuntingYard)
-Java implementation of the Dijkstra's Shunting Yard algorithm for parsing and evaluating mathematical expressions.
+Java implementation of Dijkstra's Shunting-Yard algorithm for parsing and evaluating mathematical expressions.
 
 Contains support for:
 - Operator precedence
@@ -12,18 +12,18 @@ Contains support for:
 
 ## Usage
 The algorithm has been divided into 3 main units:
-- **Lexer**: Tokenises a raw equation
-- **Parser**: Converts a tokenised equation into Reverse-Polish Notation (RPN) form
-- **Evaluator**: Evaluates an equation in RPN form to produce a list of output values
+- **Lexer**: Tokenises a raw expression
+- **Parser**: Converts a tokenised expression into Reverse-Polish Notation (RPN) form
+- **Evaluator**: Evaluates an expression in RPN form to produce a list of output values
 
 ### Basic Demo
 ```Java
-// Initial equation
-String equation = "±(2+1*3)+√(2^2)";
+// Initial expression
+String expression = "±(2+1*3)+√(2^2)";
 
 // Step 1: Lexer
 Lexer lexer = new DefaultLexer();
-List<Token> tokens = lexer.readTokens(equation);
+List<Token> tokens = lexer.readTokens(expression);
 
 // Step 2: Parser
 Parser parser = new DefaultParser();
@@ -31,16 +31,18 @@ List<Token> rpn = parser.parse(tokens);
 
 // Step 3: Evaluator
 Evaluator evaluator = new DefaultEvaluator();
-List<Double> outputs = evaluator.evaluator(rpn);
+List<Double> outputs = evaluator.evaluate(rpn);
 
 // Output values
+System.out.println(expression + "=");
 for (Double value : outputs) {
     System.out.println(value);
 }
 
 // Produces:
-// 7
-// -3
+// ±(2+1*3)+√(2^2)=
+// 7.0
+// -3.0
 ```
 
 ### Variables Demo
@@ -57,44 +59,48 @@ expensive operation).
 Note: if a variable is not defined in either the lexer or evaluator, an exception will
 be thrown.
 
-```
-// Initial equation
-String equation = "x*y";
+```Java
+// Initial expression
+String expression = "x*y";
 
 // Step 1: Lexer
-Lexer lexer = new DefaultLexer();
+DefaultLexer lexer = new DefaultLexer();
 lexer.getVariables().add("x"); // Define variable x
 lexer.getVariables().add("y"); // Define variable y
-List<Token> tokens = lexer.readTokens(equation);
+List<Token> tokens = lexer.readTokens(expression);
 
 // Step 2: Parser
-Parser parser = new DefaultParser();
+DefaultParser parser = new DefaultParser();
 List<Token> rpn = parser.parse(tokens);
 
 // Step 3: Evaluator
-Evaluator evaluator = new DefaultEvaluator();
-evaluator.getVariables().put("x", 3);
-evaluator.getVariables().put("y", 4);
-List<Double> outputs = evaluator.evaluator(rpn);
+DefaultEvaluator evaluator = new DefaultEvaluator();
+evaluator.getVariables().put("x", 3d); // Define x with value 3
+evaluator.getVariables().put("y", 4d); // Define y with value 4
+List<Double> outputs = evaluator.evaluate(rpn);
 
 // Output values
+System.out.println(expression + "=");
 for (Double value : outputs) {
     System.out.println(value);
 }
 
 // Re-run with different values
-evaluator.getVariables().put("x", 5);
-evaluator.getVariables().put("y", 6);
-outputs = evaluator.evaluator(rpn);
+evaluator.getVariables().put("x", 5d); // Re-define x with value 5
+evaluator.getVariables().put("y", 6d); // Re-define y with value 6
+outputs = evaluator.evaluate(rpn);
 
 // Output values
+System.out.println(expression + "=");
 for (Double value : outputs) {
     System.out.println(value);
 }
 
 // Produces:
-// 12
-// 30
+// x*y=
+// 12.0
+// x*y=
+// 30.0
 ```
 
 ## Class Diagram
