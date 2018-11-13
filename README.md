@@ -42,3 +42,6 @@ for (Double value : outputs) {
 // 7
 // -3
 ```
+
+## Class Diagram
+![Class diagram](classdiagram.png)
