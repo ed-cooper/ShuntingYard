@@ -11,7 +11,7 @@ import java.util.*;
  * <code>VariableToken</code>.
  */
 public class DefaultEvaluator extends EvaluatorBase {
-    private HashMap<String, Integer> variables = new HashMap<>();
+    private HashMap<String, Double> variables = new HashMap<>();
 
     @Override
     public List<Double> evaluate(List<Token> equation) {
@@ -31,6 +31,8 @@ public class DefaultEvaluator extends EvaluatorBase {
                 evaluateUnaryOperator((UnaryOperatorToken) token, values);
             } else if (token instanceof ConstantToken) { // Constant
                 evaluateConstantToken((ConstantToken) token, values);
+            } else if (token instanceof VariableToken) { // Variable
+                evaluateVariableToken((VariableToken) token, values);
             } else {
                 throw new UnsupportedTokenException(equation, token);
             }
@@ -99,10 +101,20 @@ public class DefaultEvaluator extends EvaluatorBase {
     }
 
     /**
+     * Evaluates a constant token.
+     * @param token         The current token being evaluated.
+     * @param values        The current stack of intermediary values.
+     */
+    protected void evaluateVariableToken(VariableToken token, Stack<List<Double>> values) {
+        // Get actual value and push to output
+        values.push(Arrays.asList(variables.get(token.getLiteral())));
+    }
+
+    /**
      * Gets the map of variable names to values.
      * @return              The map of variable names to values.
      */
-    public Map<String, Integer> getVariables() {
+    public Map<String, Double> getVariables() {
         return variables;
     }
 }
