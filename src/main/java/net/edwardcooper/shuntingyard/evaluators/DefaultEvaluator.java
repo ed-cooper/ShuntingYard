@@ -29,6 +29,8 @@ public class DefaultEvaluator extends EvaluatorBase {
                 evaluateBinaryOperator((BinaryOperatorToken) token, values);
             } else if (token instanceof UnaryOperatorToken) { // Unary ops
                 evaluateUnaryOperator((UnaryOperatorToken) token, values);
+            } else if (token instanceof MultiOutputUnaryOperatorToken) { // Multi-output unary ops
+                evaluateMultiOutputUnaryOperator((MultiOutputUnaryOperatorToken) token, values);
             } else if (token instanceof ConstantToken) { // Constant
                 evaluateConstantToken((ConstantToken) token, values);
             } else if (token instanceof VariableToken) { // Variable
@@ -84,6 +86,25 @@ public class DefaultEvaluator extends EvaluatorBase {
         ArrayList<Double> outputs = new ArrayList<>();
         for (Double value : operand1) {
             outputs.add(token.getUnaryOperation().getAction().applyAsDouble(value));
+        }
+
+        // Push outputs to stack
+        values.push(outputs);
+    }
+
+    /**
+     * Evaluates a multi-output unary operator token.
+     * @param token         The current token being evaluated.
+     * @param values        The current stack of intermediary values.
+     */
+    protected void evaluateMultiOutputUnaryOperator(MultiOutputUnaryOperatorToken token, Stack<List<Double>> values) {
+        // Get operands
+        List<Double> operand1 = values.pop();
+
+        // Apply operator to each value in first operand
+        ArrayList<Double> outputs = new ArrayList<>();
+        for (Double value : operand1) {
+            outputs.addAll(token.getMultiOutputUnaryOperation().getAction().apply(value));
         }
 
         // Push outputs to stack
