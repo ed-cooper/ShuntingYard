@@ -2,13 +2,17 @@ package net.edwardcooper.shuntingyard.lexers;
 
 import net.edwardcooper.shuntingyard.model.*;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultLexerTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testReadTokens() {
@@ -95,6 +99,11 @@ public class DefaultLexerTest {
     @Test
     public void testReadToken_123point45() {
         testReadToken("123.45", new ConstantToken("123.45", 123.45), new DefaultLexer());
+    }
+
+    @Test
+    public void testReadToken_123point() {
+        testReadToken("123.", new ConstantToken("123", 123), new DefaultLexer());
     }
 
     @Test
@@ -334,6 +343,15 @@ public class DefaultLexerTest {
         DefaultLexer lexer = new DefaultLexer();
         lexer.getVariables().add("xyz");
         testReadToken("xyz", new VariableToken("xyz"), lexer);
+    }
+
+    @Test
+    public void testReadToken_invalid() {
+        String input = "invalid";
+        DefaultLexer lexer = new DefaultLexer();
+
+        thrown.expect(TokenNotRecognisedException.class);
+        lexer.readToken(input, 0);
     }
 
     private void testReadToken(String token, Token expected, DefaultLexer lexer) {
