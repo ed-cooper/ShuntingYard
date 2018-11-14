@@ -322,6 +322,20 @@ public class DefaultLexerTest {
         testReadToken("∓", lexer.getOperators().get(29).getToken(), lexer);
     }
 
+    @Test
+    public void testReadToken_variable() {
+        DefaultLexer lexer = new DefaultLexer();
+        lexer.getVariables().add("x");
+        testReadToken("x", new VariableToken("x"), lexer);
+    }
+
+    @Test
+    public void testReadToken_variable_2() {
+        DefaultLexer lexer = new DefaultLexer();
+        lexer.getVariables().add("xyz");
+        testReadToken("xyz", new VariableToken("xyz"), lexer);
+    }
+
     private void testReadToken(String token, Token expected, DefaultLexer lexer) {
         // Don't test from first character, so that the start parameter is tested
         // Don't test until end, so that token termination is tested
