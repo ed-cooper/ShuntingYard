@@ -46,4 +46,14 @@ public class BinaryOperatorTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testGetToken() {
+        BinaryOperator operator = new BinaryOperator("+", 1, true, (x, y) -> x + y);
+        BinaryOperatorToken expected = new BinaryOperatorToken("+", operator);
+
+        OperatorToken actual = operator.getToken();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
