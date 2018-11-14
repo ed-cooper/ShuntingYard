@@ -1,5 +1,6 @@
 package net.edwardcooper.shuntingyard.lexers;
 
+import net.edwardcooper.shuntingyard.model.BracketToken;
 import net.edwardcooper.shuntingyard.model.ConstantToken;
 import net.edwardcooper.shuntingyard.model.Token;
 import org.junit.Assert;
@@ -110,6 +111,36 @@ public class DefaultLexerTest {
     @Test
     public void testReadToken_pi_2() {
         testReadToken("pi", new ConstantToken("pi", Math.PI));
+    }
+
+    @Test
+    public void testReadToken_leftParenthesis() {
+        testReadToken("(", new BracketToken("(", true));
+    }
+
+    @Test
+    public void testReadToken_rightParenthesis() {
+        testReadToken(")", new BracketToken(")", false));
+    }
+
+    @Test
+    public void testReadToken_leftBracket() {
+        testReadToken("[", new BracketToken("[", true));
+    }
+
+    @Test
+    public void testReadToken_rightBracket() {
+        testReadToken("]", new BracketToken("]", false));
+    }
+
+    @Test
+    public void testReadToken_leftBrace() {
+        testReadToken("{", new BracketToken("{", true));
+    }
+
+    @Test
+    public void testReadToken_rightBrace() {
+        testReadToken("}", new BracketToken("}", false));
     }
 
     private void testReadToken(String token, Token expected) {
