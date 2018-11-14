@@ -21,4 +21,18 @@ public abstract class Token {
     public String getLiteral() {
         return literal;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Check class is the same
+        if (obj.getClass() != this.getClass()) return false;
+        // Check literal is the same
+        return this.getLiteral().equals(((Token)obj).getLiteral());
+    }
+
+    @Override
+    public int hashCode() {
+        // Tokens with the same literal should be equivalent, so user literal hash code
+        return this.literal.hashCode();
+    }
 }

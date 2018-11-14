@@ -24,4 +24,14 @@ public class ConstantToken extends Token {
     public double getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Check class is the same
+        if (obj.getClass() != this.getClass()) return false;
+        // Check other properties
+        ConstantToken other = (ConstantToken)obj;
+        return this.getLiteral().equals(other.getLiteral()) &&
+                this.getValue() == other.getValue();
+    }
 }
