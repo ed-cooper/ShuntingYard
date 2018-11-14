@@ -24,4 +24,14 @@ public class BracketToken extends Token {
     public boolean getIsOpenBracket() {
         return isOpenBracket;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        // Check class is the same
+        if (obj.getClass() != this.getClass()) return false;
+        // Check other properties
+        BracketToken other = (BracketToken)obj;
+        return this.getLiteral().equals(other.getLiteral()) &&
+                this.getIsOpenBracket() == other.getIsOpenBracket();
+    }
 }
