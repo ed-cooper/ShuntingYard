@@ -142,6 +142,186 @@ public class DefaultLexerTest {
         testReadToken("}", new BracketToken("}", false), new DefaultLexer());
     }
 
+    @Test
+    public void testReadToken_plus() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("+", lexer.getOperators().get(0).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_subtract() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("-", lexer.getOperators().get(1).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_multiply() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("*", lexer.getOperators().get(2).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_multiply_2() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("×", lexer.getOperators().get(3).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_divide() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("/", lexer.getOperators().get(4).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_divide_2() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("÷", lexer.getOperators().get(5).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_power() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("^", lexer.getOperators().get(6).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_negate() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("−", lexer.getOperators().get(7).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_sqrt() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("sqrt", lexer.getOperators().get(8).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_sqrt_2() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("√", lexer.getOperators().get(9).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_sinh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("sinh", lexer.getOperators().get(10).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_cosh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("cosh", lexer.getOperators().get(11).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_tanh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("tanh", lexer.getOperators().get(12).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_sin() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("sin", lexer.getOperators().get(13).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_cos() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("cos", lexer.getOperators().get(14).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_tan() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("tan", lexer.getOperators().get(15).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_asinh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("asinh", lexer.getOperators().get(16).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_acosh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("acosh", lexer.getOperators().get(17).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_atanh() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("atanh", lexer.getOperators().get(18).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_asin() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("asin", lexer.getOperators().get(19).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_arcsin() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("arcsin", lexer.getOperators().get(20).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_acos() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("acos", lexer.getOperators().get(21).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_arccos() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("arccos", lexer.getOperators().get(22).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_atan() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("atan", lexer.getOperators().get(23).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_arctan() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("arctan", lexer.getOperators().get(24).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_log_10() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("log_10", lexer.getOperators().get(25).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_log_2() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("log_2", lexer.getOperators().get(26).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_ln() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("ln", lexer.getOperators().get(27).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_plusMinus() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("±", lexer.getOperators().get(28).getToken(), lexer);
+    }
+
+    @Test
+    public void testReadToken_minusPlus() {
+        DefaultLexer lexer = new DefaultLexer();
+        testReadToken("∓", lexer.getOperators().get(29).getToken(), lexer);
+    }
+
     private void testReadToken(String token, Token expected, DefaultLexer lexer) {
         // Don't test from first character, so that the start parameter is tested
         // Don't test until end, so that token termination is tested
