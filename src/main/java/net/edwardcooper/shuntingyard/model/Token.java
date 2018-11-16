@@ -32,7 +32,7 @@ public abstract class Token {
 
     @Override
     public int hashCode() {
-        // Tokens with the same literal should be equivalent, so user literal hash code
+        // Tokens with the same literal should be equivalent, so use the hash code of the literal
         return this.literal.hashCode();
     }
 }
