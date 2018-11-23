@@ -63,4 +63,14 @@ public class TokenTest {
 
         Assert.assertNotEquals(unexpected, actual);
     }
+
+    @Test
+    public void testToString() {
+        Token token = new VariableToken("x");
+        String expected = "VariableToken[literal=\"x\"]";
+
+        String actual = token.toString();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
