@@ -42,8 +42,7 @@ public class DefaultEvaluator extends EvaluatorBase {
 
         // There should be a single item remaining in values - the final output
         if (values.size() > 1) {
-            // TODO: create class for exception
-            throw new RuntimeException("Invalid RPN");
+            throw new InvalidSyntaxException("Invalid RPN");
         }
 
         return values.pop();

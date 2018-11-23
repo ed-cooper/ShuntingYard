@@ -61,8 +61,7 @@ public class DefaultParser extends ParserBase {
             } else {
                 // There should be no other token types in the stack
 
-                // TODO: Create specialised exception class
-                throw new RuntimeException("Unexpected token type");
+                throw new InvalidSyntaxException("Expected binary operator but found " + operator.toString());
             }
         }
 
@@ -152,8 +151,7 @@ public class DefaultParser extends ParserBase {
 
         // Check last operator was an open bracket
         if (!(operator instanceof BracketToken)) {
-            // TODO: create new exception type
-            throw new RuntimeException("No matching open bracket found");
+            throw new InvalidSyntaxException("No matching open bracket found");
         }
 
         // Process all the unary operators at the top of the stack (as these apply to this bracket)
