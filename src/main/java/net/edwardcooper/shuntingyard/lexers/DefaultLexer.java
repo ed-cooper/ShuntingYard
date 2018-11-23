@@ -60,7 +60,7 @@ public class DefaultLexer extends LexerBase {
     private Pattern findNumbers = Pattern.compile("^\\d+(\\.\\d+)?");
 
     /**
-     * DefaultLexer class constructor
+     * DefaultLexer class constructor.
      */
     public DefaultLexer() {
         // Initialise constants
