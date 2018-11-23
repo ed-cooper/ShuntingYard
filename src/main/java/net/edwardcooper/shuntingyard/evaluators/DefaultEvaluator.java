@@ -53,7 +53,13 @@ public class DefaultEvaluator extends EvaluatorBase {
      * @param token         The current token being evaluated.
      * @param values        The current stack of intermediary values.
      */
-    protected void evaluateBinaryOperator(BinaryOperatorToken token, Stack<List<Double>> values) {
+    protected void evaluateBinaryOperator(BinaryOperatorToken token, Stack<List<Double>> values)
+            throws InvalidSyntaxException {
+        // Check operands exist
+        if (values.size() < 2) {
+            throw new InvalidSyntaxException("Missing operands for " + token.toString());
+        }
+
         // Get operands
         List<Double> operand2 = values.pop();
         List<Double> operand1 = values.pop();
@@ -77,7 +83,13 @@ public class DefaultEvaluator extends EvaluatorBase {
      * @param token         The current token being evaluated.
      * @param values        The current stack of intermediary values.
      */
-    protected void evaluateUnaryOperator(UnaryOperatorToken token, Stack<List<Double>> values) {
+    protected void evaluateUnaryOperator(UnaryOperatorToken token, Stack<List<Double>> values)
+            throws InvalidSyntaxException {
+        // Check operands exist
+        if (values.size() < 1) {
+            throw new InvalidSyntaxException("Missing operands for " + token.toString());
+        }
+
         // Get operands
         List<Double> operand1 = values.pop();
 
@@ -96,7 +108,13 @@ public class DefaultEvaluator extends EvaluatorBase {
      * @param token         The current token being evaluated.
      * @param values        The current stack of intermediary values.
      */
-    protected void evaluateMultiOutputUnaryOperator(MultiOutputUnaryOperatorToken token, Stack<List<Double>> values) {
+    protected void evaluateMultiOutputUnaryOperator(MultiOutputUnaryOperatorToken token, Stack<List<Double>> values)
+            throws InvalidSyntaxException {
+        // Check operands exist
+        if (values.size() < 1) {
+            throw new InvalidSyntaxException("Missing operands for " + token.toString());
+        }
+
         // Get operands
         List<Double> operand1 = values.pop();
 
