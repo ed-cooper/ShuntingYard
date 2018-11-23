@@ -35,4 +35,9 @@ public abstract class Token {
         // Tokens with the same literal should be equivalent, so use the hash code of the literal
         return this.literal.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "[literal=\"" + this.getLiteral() + "\"]";
+    }
 }
