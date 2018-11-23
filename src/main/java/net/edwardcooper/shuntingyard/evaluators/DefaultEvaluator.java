@@ -14,7 +14,7 @@ public class DefaultEvaluator extends EvaluatorBase {
     private HashMap<String, Double> variables = new HashMap<>();
 
     @Override
-    public List<Double> evaluate(List<Token> equation) {
+    public List<Double> evaluate(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException {
         // If RPN empty, return no result
         if (equation.isEmpty()) {
             return Collections.emptyList();

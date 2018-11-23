@@ -2,7 +2,9 @@ package net.edwardcooper.shuntingyard.parsers;
 
 import net.edwardcooper.shuntingyard.lexers.DefaultLexer;
 import net.edwardcooper.shuntingyard.model.ConstantToken;
+import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
 import net.edwardcooper.shuntingyard.model.Token;
+import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ import java.util.List;
 public class DefaultParserTest {
 
     @Test
-    public void testParse() {
+    public void testParse() throws UnsupportedTokenException, InvalidSyntaxException {
         // Test equation: ±(2)+√e
         DefaultLexer lexer = new DefaultLexer();
         DefaultParser parser = new DefaultParser();
@@ -39,7 +41,7 @@ public class DefaultParserTest {
     }
 
     @Test
-    public void testParse_BinaryOperators() {
+    public void testParse_BinaryOperators() throws UnsupportedTokenException, InvalidSyntaxException {
         // Test equation: 4+2*3-6/5^1
         DefaultLexer lexer = new DefaultLexer();
         DefaultParser parser = new DefaultParser();
@@ -76,7 +78,7 @@ public class DefaultParserTest {
     }
 
     @Test
-    public void testParse_Brackets() {
+    public void testParse_Brackets() throws UnsupportedTokenException, InvalidSyntaxException {
         // Test equation: 4+(2*(3-6)/5)^1
         DefaultLexer lexer = new DefaultLexer();
         DefaultParser parser = new DefaultParser();

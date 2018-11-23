@@ -1,6 +1,8 @@
 package net.edwardcooper.shuntingyard.parsers;
 
+import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
 import net.edwardcooper.shuntingyard.model.Token;
+import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 
 import java.util.List;
 
@@ -13,5 +15,5 @@ public interface Parser {
      * @param equation       The collection of tokens that represent the original equation.
      * @return               The RPN form of the input equation.
      */
-    List<Token> parse(List<Token> equation);
+    List<Token> parse(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException;
 }

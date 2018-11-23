@@ -17,7 +17,7 @@ import java.util.Stack;
  */
 public class DefaultParser extends ParserBase {
     @Override
-    public List<Token> parse(List<Token> equation) {
+    public List<Token> parse(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException {
         ArrayList<Token> outputRPN = new ArrayList<>(); // Output RPN
         Stack<Token> operatorStack = new Stack<>();     // Used to temporarily hold operators
 
@@ -132,7 +132,7 @@ public class DefaultParser extends ParserBase {
      * @param operatorStack         The current operator stack.
      */
     protected void processCloseBracket(BracketToken currentToken, ArrayList<Token> outputRPN,
-                                         Stack<Token> operatorStack) {
+                                         Stack<Token> operatorStack) throws InvalidSyntaxException {
         // When close bracket is found, add all the operators in the stack to the output RPN until the matching
         // open bracket is found
         Token operator = null;

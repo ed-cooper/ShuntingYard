@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Thrown to indicate that an unsupported token type was found whilst parsing or evaluating an equation.
  */
-public class UnsupportedTokenException extends RuntimeException {
+public class UnsupportedTokenException extends Exception {
     private List<Token> equation;
     private Token token;
 

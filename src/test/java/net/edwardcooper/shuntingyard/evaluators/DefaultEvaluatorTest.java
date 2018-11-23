@@ -2,7 +2,9 @@ package net.edwardcooper.shuntingyard.evaluators;
 
 import net.edwardcooper.shuntingyard.lexers.DefaultLexer;
 import net.edwardcooper.shuntingyard.model.ConstantToken;
+import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
 import net.edwardcooper.shuntingyard.model.Token;
+import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +14,7 @@ import java.util.List;
 public class DefaultEvaluatorTest {
 
     @Test
-    public void testEvaluate() {
+    public void testEvaluate() throws UnsupportedTokenException, InvalidSyntaxException {
         // Test equation ±(2+1*3)+√(2^2)
         DefaultLexer lexer = new DefaultLexer();
         DefaultEvaluator evaluator = new DefaultEvaluator();

@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class LexerBase implements Lexer {
     @Override
-    public List<Token> readTokens(String input) {
+    public List<Token> readTokens(String input) throws TokenNotRecognisedException {
         String preprocessed = preprocess(input);
 
         int position = 0;

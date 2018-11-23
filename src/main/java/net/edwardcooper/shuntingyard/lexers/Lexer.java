@@ -1,6 +1,7 @@
 package net.edwardcooper.shuntingyard.lexers;
 
 import net.edwardcooper.shuntingyard.model.Token;
+import net.edwardcooper.shuntingyard.model.TokenNotRecognisedException;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface Lexer {
      * @param input         The input string to split.
      * @return              A list of <code>Token</code> objects representing the input string.
      */
-    List<Token> readTokens(String input);
+    List<Token> readTokens(String input) throws TokenNotRecognisedException;
 }

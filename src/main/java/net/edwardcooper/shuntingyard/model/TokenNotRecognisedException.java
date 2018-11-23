@@ -3,7 +3,7 @@ package net.edwardcooper.shuntingyard.model;
 /**
  * Thrown to indicate that a token was not recognised whilst tokenising a string.
  */
-public class TokenNotRecognisedException extends RuntimeException {
+public class TokenNotRecognisedException extends Exception {
     private String inputString;
     private int position;
 
