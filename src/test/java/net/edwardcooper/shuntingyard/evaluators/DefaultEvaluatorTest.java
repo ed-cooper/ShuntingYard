@@ -6,12 +6,16 @@ import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
 import net.edwardcooper.shuntingyard.model.Token;
 import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultEvaluatorTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testEvaluate() throws UnsupportedTokenException, InvalidSyntaxException {
@@ -36,5 +40,35 @@ public class DefaultEvaluatorTest {
         List<Double> actual = evaluator.evaluate(rpn);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEvaluate_UnexpectedTokenException_Operators()
+            throws UnsupportedTokenException, InvalidSyntaxException {
+        // Test equation 2 1 3 (i.e. missing operators)
+        DefaultEvaluator evaluator = new DefaultEvaluator();
+        List<Token> rpn = Arrays.asList(
+                new ConstantToken("2", 2),  // 2
+                new ConstantToken("1", 1),  // 1
+                new ConstantToken("3", 3)   // 3
+        );
+
+        thrown.expect(InvalidSyntaxException.class);
+        evaluator.evaluate(rpn);
+    }
+
+    @Test
+    public void testEvaluate_UnexpectedTokenException_Operands()
+            throws UnsupportedTokenException, InvalidSyntaxException {
+        // Test equation * + (i.e. missing operands)
+        DefaultLexer lexer = new DefaultLexer();
+        DefaultEvaluator evaluator = new DefaultEvaluator();
+        List<Token> rpn = Arrays.asList(
+                lexer.getOperators().get(2).getToken(),  // *
+                lexer.getOperators().get(0).getToken()   // +
+        );
+
+        thrown.expect(InvalidSyntaxException.class);
+        evaluator.evaluate(rpn);
     }
 }
