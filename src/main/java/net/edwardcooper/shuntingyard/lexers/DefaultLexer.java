@@ -111,7 +111,6 @@ public class DefaultLexer extends LexerBase {
             String match = findNumbersMatcher.group();
             return new ConstantToken(match, Double.parseDouble(match));
         }
-        // TODO: Implicit multiplication
         // No match found
         throw new TokenNotRecognisedException(input, start);
     }
