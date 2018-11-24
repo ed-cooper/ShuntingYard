@@ -123,7 +123,7 @@ public class DefaultParserTest {
     }
 
     @Test
-    public void testParse_InvalidSyntaxException() throws UnsupportedTokenException, InvalidSyntaxException  {
+    public void testParse_InvalidSyntaxException_Operators() throws UnsupportedTokenException, InvalidSyntaxException  {
         // Test equation: ± +
         DefaultLexer lexer = new DefaultLexer();
         DefaultParser parser = new DefaultParser();
@@ -136,4 +136,19 @@ public class DefaultParserTest {
         parser.parse(tokens);
     }
 
+    @Test
+    public void testParse_InvalidSyntaxException_Brackets() throws UnsupportedTokenException, InvalidSyntaxException  {
+        // Test equation: 4+2)
+        DefaultLexer lexer = new DefaultLexer();
+        DefaultParser parser = new DefaultParser();
+        List<Token> tokens = Arrays.asList(
+                new ConstantToken("4", 4), // 4
+                lexer.getOperators().get(0).getToken(), // +
+                new ConstantToken("2", 2), // 2
+                lexer.getBrackets().get(1)              // )
+        );
+
+        thrown.expect(InvalidSyntaxException.class);
+        parser.parse(tokens);
+    }
 }
