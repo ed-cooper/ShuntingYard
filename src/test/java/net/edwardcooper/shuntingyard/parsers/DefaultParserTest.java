@@ -6,12 +6,16 @@ import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
 import net.edwardcooper.shuntingyard.model.Token;
 import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class DefaultParserTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testParse() throws UnsupportedTokenException, InvalidSyntaxException {
@@ -116,6 +120,20 @@ public class DefaultParserTest {
         List<Token> actual = parser.parse(tokens);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testParse_InvalidSyntaxException() throws UnsupportedTokenException, InvalidSyntaxException  {
+        // Test equation: ± +
+        DefaultLexer lexer = new DefaultLexer();
+        DefaultParser parser = new DefaultParser();
+        List<Token> tokens = Arrays.asList(
+                lexer.getOperators().get(28).getToken(), // ±
+                lexer.getOperators().get(0).getToken()   // +
+        );
+
+        thrown.expect(InvalidSyntaxException.class);
+        parser.parse(tokens);
     }
 
 }
