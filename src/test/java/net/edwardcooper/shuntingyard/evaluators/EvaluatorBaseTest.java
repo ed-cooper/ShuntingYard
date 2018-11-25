@@ -1,5 +1,8 @@
 package net.edwardcooper.shuntingyard.evaluators;
 
+import net.edwardcooper.shuntingyard.model.InvalidSyntaxException;
+import net.edwardcooper.shuntingyard.model.Token;
+import net.edwardcooper.shuntingyard.model.UnsupportedTokenException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +16,12 @@ public class EvaluatorBaseTest {
 
     @Test
     public void testCartesian_3_3() {
-        EvaluatorBase evaluator = new DefaultEvaluator();
+        EvaluatorBase evaluator = new EvaluatorBase() {
+            @Override
+            public List<Double> evaluate(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException {
+                throw new UnsupportedOperationException();
+            }
+        };
         List<Double> set1 = Arrays.asList(1d, 2d, 3d);
         List<Double> set2 = Arrays.asList(4d, 5d, 6d);
         List<Double[]> expected = new ArrayList<>();
@@ -37,7 +45,12 @@ public class EvaluatorBaseTest {
 
     @Test
     public void testCartesian_3_2() {
-        EvaluatorBase evaluator = new DefaultEvaluator();
+        EvaluatorBase evaluator = new EvaluatorBase() {
+            @Override
+            public List<Double> evaluate(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException {
+                throw new UnsupportedOperationException();
+            }
+        };
         List<Double> set1 = Arrays.asList(1d, 2d, 3d);
         List<Double> set2 = Arrays.asList(4d, 5d);
         List<Double[]> expected = new ArrayList<>();
@@ -58,7 +71,12 @@ public class EvaluatorBaseTest {
 
     @Test
     public void testCartesian_2_3() {
-        EvaluatorBase evaluator = new DefaultEvaluator();
+        EvaluatorBase evaluator = new EvaluatorBase() {
+            @Override
+            public List<Double> evaluate(List<Token> equation) throws UnsupportedTokenException, InvalidSyntaxException {
+                throw new UnsupportedOperationException();
+            }
+        };
         List<Double> set1 = Arrays.asList(1d, 2d);
         List<Double> set2 = Arrays.asList(4d, 5d, 6d);
         List<Double[]> expected = new ArrayList<>();

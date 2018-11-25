@@ -10,7 +10,12 @@ public class OperatorTest {
     @Test
     public void getSymbol() {
         String expected = "+";
-        Operator operator = new BinaryOperator(expected, 2, true,  (x, y) -> x + y);
+        Operator operator = new Operator(expected) {
+            @Override
+            public OperatorToken getToken() {
+                throw new UnsupportedOperationException();
+            }
+        };
 
         String actual = operator.getSymbol();
 

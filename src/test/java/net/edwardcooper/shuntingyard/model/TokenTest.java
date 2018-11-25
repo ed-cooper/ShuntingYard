@@ -10,7 +10,7 @@ public class TokenTest {
     @Test
     public void testGetLiteral() {
         String expected = "x";
-        Token token = new VariableToken(expected);
+        Token token = new Token(expected) {};
 
         String actual = token.getLiteral();
 
@@ -55,8 +55,8 @@ public class TokenTest {
 
     @Test
     public void testHashCode() {
-        Token token1 = new VariableToken("x");
-        Token token2 = new VariableToken("y");
+        Token token1 = new Token("x") {};
+        Token token2 = new Token("y") {};
 
         int unexpected = token1.hashCode();
         int actual = token2.hashCode();
@@ -66,6 +66,7 @@ public class TokenTest {
 
     @Test
     public void testToString() {
+        // Use VariableToken as this does not override toString
         Token token = new VariableToken("x");
         String expected = "VariableToken[literal=\"x\"]";
 
